@@ -8,7 +8,7 @@ public class BasicCalculator {
         String continueCalculation = null;
 
         do {
-                 // Prompt the user to enter an expression
+                 // Prompting the user to enter an expression
             System.out.print("Enter a mathematical expression (example: 1 + 1): ");
             String input = scanner.nextLine();
 
