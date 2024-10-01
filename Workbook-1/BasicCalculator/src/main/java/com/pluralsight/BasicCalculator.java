@@ -8,27 +8,27 @@ public class BasicCalculator {
         String continueCalculation = null;
 
         do {
-                 // Prompting the user to enter an expression
+
             System.out.print("Enter a mathematical expression (example: 1 + 1): ");
             String input = scanner.nextLine();
 
-            // Initialize variables
+
             double firstNumber = 0;
             double secondNumber = 0;
             String operator = "";
 
-            // Find the first number
+
             int operatorIndex = findOperatorIndex(input);
 
             if (operatorIndex != -1) {
-                // Extract first number
+
                 String firstPart = input.substring(0, operatorIndex).trim();
                 firstNumber = Double.parseDouble(firstPart);
 
-                // Extract operator
+
                 operator = String.valueOf(input.charAt(operatorIndex)).trim();
 
-                // Extract second number
+
                 String secondPart = input.substring(operatorIndex + 1).trim();
                 secondNumber = Double.parseDouble(secondPart);
             } else {
@@ -36,7 +36,7 @@ public class BasicCalculator {
                 continue; // Skip to the next iteration
             }
 
-            // Perform the operation based on the operator
+
             double result;
             switch (operator) {
                 case "+":
@@ -68,27 +68,27 @@ public class BasicCalculator {
                     break;
             }
 
-            // Ask the user if they want to perform another calculation
+
             System.out.print("Do you want to calculate again? (yes/no): ");
             continueCalculation = scanner.nextLine().trim().toLowerCase();
         } while (continueCalculation.equals("yes"));
 
-        // Close the scanner
+
         scanner.close();
         System.out.println("Thank you for using Carmy's calculator!");
     }
 
-    // Function to find the first operator in the string
+
     private static int findOperatorIndex(String input) {
         char[] operators = {'+', '-', '*', '/'};
         for (int i = 0; i < input.length(); i++) {
             for (char operator : operators) {
                 if (input.charAt(i) == operator) {
-                    return i; // Return the index of the first operator found
+                    return i;
                 }
             }
         }
-        return -1; // No operator found
+        return -1;
     }
 }
 
