@@ -10,42 +10,32 @@ public class AddressBuilder {
         String fullName = scanner.nextLine();
         addressBuilder.append(fullName).append("\n");
 
-        addressBuilder.append("Billing Address:\n");
-        System.out.print("Billing Street: ");
-        String billingStreet = scanner.nextLine();
-        addressBuilder.append(billingStreet).append("\n");
-
-        System.out.print("Billing City: ");
-        String billingCity = scanner.nextLine();
-
-        System.out.print("Billing State: ");
-        String billingState = scanner.nextLine();
-
-        System.out.print("Billing Zip: ");
-        String billingZip = scanner.nextLine();
-        addressBuilder.append(billingCity).append(", ").append(billingState).append(" ").append(billingZip).append("\n");
-
-        addressBuilder.append("Shipping Address:\n");
-        System.out.print("Shipping Street: ");
-        String shippingStreet = scanner.nextLine();
-        addressBuilder.append(shippingStreet).append("\n");
-
-        System.out.print("Shipping City: ");
-        String shippingCity = scanner.nextLine();
-
-        System.out.print("Shipping State: ");
-        String shippingState = scanner.nextLine();
-
-        System.out.print("Shipping Zip: ");
-        String shippingZip = scanner.nextLine();
-        addressBuilder.append(shippingCity).append(", ").append(shippingState).append(" ").append(shippingZip).append("\n");
+        appendAddress(scanner, addressBuilder, "Billing");
+        appendAddress(scanner, addressBuilder, "Shipping");
 
         System.out.println("\nCustomer Information:");
-        System.out.println(addressBuilder.toString());
+        System.out.println(addressBuilder);
 
         scanner.close();
     }
+
+    private static void appendAddress(Scanner scanner, StringBuilder addressBuilder, String type) {
+        addressBuilder.append(type).append(" Address:\n");
+        System.out.print(type + " Street: ");
+        addressBuilder.append(scanner.nextLine()).append("\n");
+
+        System.out.print(type + " City: ");
+        String city = scanner.nextLine();
+
+        System.out.print(type + " State: ");
+        String state = scanner.nextLine();
+
+        System.out.print(type + " Zip: ");
+        String zip = scanner.nextLine();
+        addressBuilder.append(city).append(", ").append(state).append(" ").append(zip).append("\n");
+    }
 }
+
 
 
 
