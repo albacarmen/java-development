@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-import java.util.Scanner
+import java.util.Scanner;
 
 public class FamousQuotes {
     private static int numbers;
@@ -16,7 +16,7 @@ public class FamousQuotes {
         "I have to protect my children from evolution"
         };
 
-        Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in);
                 System.out.println("Select a number between 1 and 7");
         int number = scanner.nextInt();
 
