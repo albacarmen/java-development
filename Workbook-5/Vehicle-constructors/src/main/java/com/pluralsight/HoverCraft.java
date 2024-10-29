@@ -3,6 +3,10 @@ package com.pluralsight;
 public class HoverCraft extends Vehicle {
     private int airCushionPressure;
 
+    public HoverCraft(int airCushionPressure) {
+        this.airCushionPressure = airCushionPressure;
+    }
+
     public int getAirCushionPressure() {
         return airCushionPressure;
     }

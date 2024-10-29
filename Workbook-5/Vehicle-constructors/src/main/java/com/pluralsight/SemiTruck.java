@@ -3,6 +3,10 @@ package com.pluralsight;
 public class SemiTruck extends Vehicle {
     private int numberOfTrailers;
 
+    public SemiTruck(int numberOfTrailers) {
+        this.numberOfTrailers = numberOfTrailers;
+    }
+
     public int getNumberOfTrailers() {
         return numberOfTrailers;
     }

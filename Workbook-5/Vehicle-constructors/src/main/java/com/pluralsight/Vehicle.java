@@ -1,5 +1,3 @@
-package com.pluralsight;
-
 public class Vehicle {
     private String model;
     private String color;
@@ -7,6 +5,15 @@ public class Vehicle {
     private int fuelCapacity;
     private int numberOfPassengers;
     private int cargoCapacity;
+
+    public Vehicle(String model, String color, int topSpeed, int fuelCapacity, int numberOfPassengers, int cargoCapacity) {
+        this.model = model;
+        this.color = color;
+        this.topSpeed = topSpeed;
+        this.fuelCapacity = fuelCapacity;
+        this.numberOfPassengers = numberOfPassengers;
+        this.cargoCapacity = cargoCapacity;
+    }
 
     public String getModel() {
         return model;
@@ -72,3 +79,4 @@ public class Vehicle {
         System.out.println("Brakes applied.");
     }
 }
+
