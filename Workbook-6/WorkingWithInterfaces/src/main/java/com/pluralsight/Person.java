@@ -10,6 +10,14 @@ class implements Comparable <Person> {
     String lastName;
     int age;
 
-    public 
+    public Person(String firstName, String lastName, int age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
     }
+
+    @Override
+    public int compareTo(Person other){
+        int lastNameComparison = this.lastName.compareTo(other)
+        }
 }
