@@ -2,7 +2,7 @@ package com.pluralsight.collection;
 
 public class Potato {
     private String name;
-    private String type; // kinds of potatoes, just as an example of items in a list
+    private String type; // potato types
 
     public Potato(String name, String type) {
         this.name = name;
@@ -22,3 +22,4 @@ public class Potato {
         return name + " (" + type + ")";
     }
 }
+

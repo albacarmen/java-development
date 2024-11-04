@@ -3,10 +3,10 @@ import com.pluralsight.collection.Potato;
 
 public class CustomCollections {
     public static void main(String[] args) {
-        // Create a FixedList for popular Potato types
+        // FixedList 4 Potato types
         FixedList<Potato> potatoList = new FixedList<>(5);
 
-        // Create popular Potato objects
+        //  Potato objects
         Potato russet = new Potato("Russet", "Starchy");
         Potato yukonGold = new Potato("Yukon Gold", "Buttery");
         Potato redPotato = new Potato("Red Potato", "Waxy");
@@ -30,3 +30,4 @@ public class CustomCollections {
         System.out.println("Potato list: " + potatoList.getItems());
     }
 }
+
