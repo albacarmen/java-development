@@ -1,54 +1,80 @@
-package com.pluralsight;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.OptionalDouble;
 
 public class Program {
     public static void main(String[] args) {
         List<Person> people = listOfPeople();
-        searchPersonByName(people);
-        double averageAge = averageAgeOfPeople(people);
-        System.out.println("Average Age of People: " + averageAge);
+        searchPerson(people);
+        System.out.println("Average age of people: " + calculateAverageAge(people));
+        System.out.println("Oldest person's age: " + findOldestPerson(people));
+        System.out.println("Youngest person's age: " + findYoungestPerson(people));
     }
 
     public static List<Person> listOfPeople() {
         List<Person> people = new ArrayList<>();
-
-        people.add(new Person("Kwame", "Mensah", 32));
-        people.add(new Person("Amina", "Oladipo", 27));
-        people.add(new Person("Jabari", "Makena", 35));
-        people.add(new Person("Fatimah", "Diallo", 29));
-        people.add(new Person("Abdul", "Kone", 40));
-        people.add(new Person("Zuri", "Tshabalala", 26));
-        people.add(new Person("Nia", "Okafor", 22));
-        people.add(new Person("Sadio", "Diouf", 34));
-        people.add(new Person("Chike", "Nwankwo", 28));
-        people.add(new Person("Makena", "Njoroge", 31));
-
+        people.add(new Person("Kofi", "Mensah", 28));
+        people.add(new Person("Amina", "Suleiman", 35));
+        people.add(new Person("Chinonso", "Okafor", 42));
+        people.add(new Person("Kwame", "Asante", 25));
+        people.add(new Person("Zainab", "Jibril", 31));
+        people.add(new Person("Tariq", "Muhammad", 29));
+        people.add(new Person("Fatima", "Ahmed", 33));
+        people.add(new Person("Olumide", "Adeyemi", 27));
+        people.add(new Person("Nia", "Bakari", 30));
+        people.add(new Person("Abdi", "Mohammed", 36));
         return people;
     }
 
-    public static void searchPersonByName(List<Person> people) {
-        System.out.println("Search a person by first or last name:");
-        Scanner Scanner = new Scanner(System.in);
-
+    public static void searchPerson(List<Person> people) {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Search for a person by first or last name:");
         System.out.print("Please enter first or last name: ");
-        String name = Scanner.nextLine();
-
-        people.stream()
-                .filter(person -> person.getFirstName().equalsIgnoreCase(name) || person.getLastName().equalsIgnoreCase(name))
-                .forEach(person -> System.out.println("Found: " + person.getFirstName() + " " + person.getLastName() + ", Age: " + person.getAge()));
-
-        Scanner.close();
+        String name = myScanner.nextLine();
+        boolean found = false;
+        for (Person person : people) {
+            if (person.getFirstName().equalsIgnoreCase(name) || person.getLastName().equalsIgnoreCase(name)) {
+                System.out.println("Found: " + person.getFirstName() + " " + person.getLastName() + " (Age: " + person.getAge() + ")");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No person was found, try again.");
+        }
+        myScanner.close();
     }
 
-    public static double averageAgeOfPeople(List<Person> people) {
-        OptionalDouble average = people.stream()
-                .mapToInt(Person::getAge)
-                .average();
+    private static double calculateAverageAge(List<Person> people) {
+        int totalAge = 0;
+        for (Person person : people) {
+            totalAge += person.getAge();
+        }
+        return people.isEmpty() ? 0 : (double) totalAge / people.size();
+    }
 
-        return average.isPresent() ? average.getAsDouble() : 0;
+    private static int findOldestPerson(List<Person> people) {
+        if (people.isEmpty()) {
+            return -1;
+        }
+        int maxAge = Integer.MIN_VALUE;
+        for (Person person : people) {
+            if (person.getAge() > maxAge) {
+                maxAge = person.getAge();
+            }
+        }
+        return maxAge;
+    }
+
+    private static int findYoungestPerson(List<Person> people) {
+        if (people.isEmpty()) {
+            return -1;
+        }
+        int minAge = Integer.MAX_VALUE;
+        for (Person person : people) {
+            if (person.getAge() < minAge) {
+                minAge = person.getAge();
+            }
+        }
+        return minAge;
     }
 }

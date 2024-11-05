@@ -1,6 +1,4 @@
-package com.pluralsight;
-
-public class Person {
+class Person {
     private String firstName;
     private String lastName;
     private int age;
@@ -25,10 +23,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        return firstName + " " + lastName + ", Age: " + age;
     }
 }
