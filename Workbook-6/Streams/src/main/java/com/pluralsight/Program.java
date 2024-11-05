@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Program {
     public static void main(String[] args) {
@@ -31,50 +30,39 @@ public class Program {
         System.out.println("Search for a person by first or last name:");
         System.out.print("Please enter first or last name: ");
         String name = myScanner.nextLine();
-        boolean found = false;
-        for (Person person : people) {
-            if (person.getFirstName().equalsIgnoreCase(name) || person.getLastName().equalsIgnoreCase(name)) {
-                System.out.println("Found: " + person.getFirstName() + " " + person.getLastName() + " (Age: " + person.getAge() + ")");
-                found = true;
-            }
+
+        List<Person> matchingPeople = people.stream()
+                .filter(person -> person.getFirstName().equalsIgnoreCase(name) || person.getLastName().equalsIgnoreCase(name))
+                .collect(Collectors.toList());
+
+        if (!matchingPeople.isEmpty()) {
+            matchingPeople.forEach(person -> System.out.println("Found: " + person.getFirstName() + " " + person.getLastName() + " (Age: " + person.getAge() + ")"));
+        } else {
+            System.out.println("No person found with that name.");
         }
-        if (!found) {
-            System.out.println("No person was found, try again.");
-        }
+
         myScanner.close();
     }
 
     private static double calculateAverageAge(List<Person> people) {
-        int totalAge = 0;
-        for (Person person : people) {
-            totalAge += person.getAge();
-        }
-        return people.isEmpty() ? 0 : (double) totalAge / people.size();
+        return people.stream()
+                .mapToInt(Person::getAge)
+                .average()
+                .orElse(0);
     }
 
     private static int findOldestPerson(List<Person> people) {
-        if (people.isEmpty()) {
-            return -1;
-        }
-        int maxAge = Integer.MIN_VALUE;
-        for (Person person : people) {
-            if (person.getAge() > maxAge) {
-                maxAge = person.getAge();
-            }
-        }
-        return maxAge;
+        return people.stream()
+                .mapToInt(Person::getAge)
+                .max()
+                .orElse(Integer.MIN_VALUE); // Returns Integer.MIN_VALUE if the list is empty
     }
 
     private static int findYoungestPerson(List<Person> people) {
-        if (people.isEmpty()) {
-            return -1;
-        }
-        int minAge = Integer.MAX_VALUE;
-        for (Person person : people) {
-            if (person.getAge() < minAge) {
-                minAge = person.getAge();
-            }
-        }
-        return minAge;
+        return people.stream()
+                .mapToInt(Person::getAge)
+                .min()
+                .orElse(Integer.MAX_VALUE); // Returns Integer.MAX_VALUE if the list is empty
     }
 }
+
